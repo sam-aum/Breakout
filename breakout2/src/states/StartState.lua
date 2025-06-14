@@ -27,6 +27,15 @@ function StartState:update(dt)
         gSounds['paddle-hit']:play()
     end
 
+    -- confirm whichever option we have selected to change screens
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gSounds['confirm']:play()
+
+        if highlighted == 1 then
+            gStateMachine:change('play')
+        end
+    end
+
     -- we no longer have this globally, so include here
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -36,7 +45,7 @@ end
 function StartState:render()
     -- title
     love.graphics.setFont(gFonts['large'])
-    love.graphics.printf("Hi Sarah, I lov you", 0, VIRTUAL_HEIGHT / 3,
+    love.graphics.printf("BREAKOUT", 0, VIRTUAL_HEIGHT / 3,
         VIRTUAL_WIDTH, 'center')
     
     -- instructions
